@@ -1,6 +1,6 @@
-DROP TABLE nyc_taxi;
+DROP TABLE nyc_taxi_csv;
 
-CREATE EXTERNAL TABLE nyc_taxi (
+CREATE EXTERNAL TABLE nyc_taxi_csv (
     vendor_id INT,
     lpep_pickup_datetime STRING,
     lpep_dropoff_datetime STRING,
@@ -27,4 +27,4 @@ STORED AS TEXTFILE
 LOCATION '/opt/hive/data/warehouse/nyc_taxi/csv/'
 TBLPROPERTIES ("skip.header.line.count"="1");
 
-SELECT * FROM nyc_taxi LIMIT 7;
+SELECT * FROM nyc_taxi_csv LIMIT 7;
