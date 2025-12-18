@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  hive-server:
+    image: apache/hive:4.0.0
+    container_name: hive-server
+    environment:
+      # This tells Hive to run both the Server and the Metastore together
+      - SERVICE_NAME=hiveserver2
+    ports:
+      - "10000:10000"  # JDBC port (for DBeaver/SQL)
+      - "10002:10002"  # Web UI
+    volumes:
+      # This maps your local 'data' folder to the container's warehouse
+      - ./data:/opt/hive/data/warehouse
+    command: /bin/bash -c "/opt/hive/bin/schematool -dbType derby -initSchema && /opt/hive/bin/hive --service hiveserver2"
